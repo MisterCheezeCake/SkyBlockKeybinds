@@ -1,0 +1,51 @@
+{
+    "$schema": "http://json-schema.org/draft-06/schema#",
+    "$ref": "#/definitions/Keybinds",
+    "definitions": {
+        "Keybinds": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "version": {
+                    "type": "integer"
+                },
+                "keybinds": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Keybind"
+                    }
+                }
+            },
+            "required": [
+                "keybinds",
+                "version"
+            ],
+            "title": "Keybinds"
+        },
+        "Keybind": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "clientside": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "command": {
+                    "type":"string"
+                }
+            },
+            "required": [
+                "category",
+                "name",
+                "command"
+            ],
+            "title": "Keybind"
+        }
+    }
+}

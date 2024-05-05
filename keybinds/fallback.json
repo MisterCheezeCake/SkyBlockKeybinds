@@ -1,0 +1,401 @@
+{
+    "$schema": "./schema.json",
+    "version": 1,
+    "keybinds": [
+        {
+            "name": "Auction House",
+            "category": "SBK - Comerce",
+            "command": "ah"
+        },
+        {
+            "name": "Bazzar",
+            "category": "SBK - Comerce",
+            "command": "bz"
+        },
+        {
+            "name": "Leave Party",
+            "category": "SBK - Party",
+            "command": "p leave"
+        },
+        {
+            "name": "Party List",
+            "category": "SBK - Party",
+            "command": "p list"
+        },
+        {
+            "name": "Warp Party",
+            "category": "SBK - Party",
+            "command": "p warp"
+        },
+        {
+            "name": "Reparty",
+            "category": "SBK - Party",
+            "command": "reparty",
+            "clientside": true
+        },
+        {
+            "name": "Join Floor 1",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon catacombs 1"
+        },
+        {
+            "name": "Join Floor 2",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon catacombs 2"
+        },
+        {
+            "name": "Join Floor 3",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon catacombs 3"
+        },
+        {
+            "name": "Join Floor 4",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon catacombs 4"
+        },
+        {
+            "name": "Join Floor 5",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon catacombs 5"
+        },
+        {
+            "name": "Join Floor 6",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon catacombs 6"
+        },
+        {
+            "name": "Join Floor 7",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon catacombs 7"
+        },
+        {
+            "name": "Join Master 1",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon master_catacombs 1"
+        },
+        {
+            "name": "Join Master 2",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon master_catacombs 2"
+        },
+        {
+            "name": "Join Master 3",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon master_catacombs 3"
+        },
+        {
+            "name": "Join Master 4",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon master_catacombs 4"
+        },
+        {
+            "name": "Join Master 5",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon master_catacombs 5"
+        },
+        {
+            "name": "Join Master 6",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon master_catacombs 6"
+        },
+        {
+            "name": "Join Master 7",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon master_catacombs 7"
+        },
+        {
+            "name": "Home",
+            "category": "SBK - Warps",
+            "command": "is"
+        },
+        {
+            "name": "Hub",
+            "category": "SBK - Warps",
+            "command": "warp hub"
+        },
+        {
+            "name": "Spider's Den",
+            "category": "SBK - Warps",
+            "command": "warp spider"
+        },
+        {
+            "name": "Blazing Fortress",
+            "category": "SBK - Warps",
+            "command": "warp nether"
+        },
+        {
+            "name": "End",
+            "category": "SBK - Warps",
+            "command": "warp end"
+        },
+        {
+            "name": "Jerry Island",
+            "category": "SBK - Warps",
+            "command": "savethejerrys"
+        },
+        {
+            "name": "Dungeon Hub",
+            "category": "SBK - Warps",
+            "command": "warp dungeon_hub"
+        },
+        {
+            "name": "Birch Park",
+            "category": "SBK - Warps",
+            "command": "warp park"
+        },
+        {
+            "name": "Fast Travel",
+            "category": "SBK - Warps",
+            "command": "warp"
+        },
+        {
+            "name": "Gold Mine",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp gold"
+        },
+        {
+            "name": "Deep Caverns",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp deep"
+        },
+        {
+            "name": "Dwarven Mines",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp mines"
+        },
+        {
+            "name": "Barn",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp barn"
+        },
+        {
+            "name": "Mushroom Desert",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp desert"
+        },
+        {
+            "name": "Cypts",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp crypt"
+        },
+        {
+            "name": "Spider's Den Top",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp nest"
+        },
+        {
+            "name": "Hub Castle",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp castle"
+        },
+        {
+            "name": "Magma Boss Arena",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp magma"
+        },
+        {
+            "name": "Dark Auction",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp da"
+        },
+        {
+            "name": "Dragon's Nest",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp drag"
+        },
+        {
+            "name": "Jungle Island",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp jungle"
+        },
+        {
+            "name": "Howling Cave",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp howl"
+        },
+        {
+            "name": "Museum",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp museum"
+        },
+        {
+            "name": "Void  Sepulture",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp void"
+        },
+        {
+            "name": "Crystal Hollows",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp crystals"
+        },
+        {
+            "name": "HOTM",
+            "category": "SBK - Dwarven Mines",
+            "command": "hotm"
+        },
+        {
+            "name": "Warp to Garry",
+            "category": "SBK - Dwarven Mines",
+            "command": "garry"
+        },
+        {
+            "name": "Toggle Chat",
+            "category": "SBK - Chats",
+            "command": "togglechat"
+        },
+        {
+            "name": "All Chat",
+            "category": "SBK - Chats",
+            "command": "chat all"
+        },
+        {
+            "name": "Party Chat",
+            "category": "SBK - Chats",
+            "command": "chat party"
+        },
+        {
+            "name": "Guild Chat",
+            "category": "SBK - Chats",
+            "command": "chat guild"
+        },
+        {
+            "name": "View Stash",
+            "category": "SBK - Stash",
+            "command": "viewstash"
+        },
+        {
+            "name": "Pick Up Stash",
+            "category": "SBK - Stash",
+            "command": "pickupstash"
+        },
+        {
+            "name": "Clear Stash",
+            "category": "SBK - Stash",
+            "command": "clearstash"
+        },
+        {
+            "name": "Guild Online",
+            "category": "SBK - Guild",
+            "command": "g online"
+        },
+        {
+            "name": "Guild List",
+            "category": "SBK - Guild",
+            "command": "g list"
+        },
+        {
+            "name": "Guild Top",
+            "category": "SBK - Guild",
+            "command": "g top"
+        },
+        {
+            "name": "Guild Party",
+            "category": "SBK - Guild",
+            "command": "g party"
+        },
+        {
+            "name": "Anvil",
+            "category": "SBK - General SkyBlock",
+            "command": "av"
+        },
+        {
+            "name": "Enchantment Table",
+            "category": "SBK - General SkyBlock",
+            "command": "et"
+        },
+        {
+            "name": "Craft",
+            "category": "SBK - General SkyBlock",
+            "command": "craft"
+        },
+        {
+            "name": "Enderchest",
+            "category": "SBK - General SkyBlock",
+            "command": "ec"
+        },
+        {
+            "name": "Pets",
+            "category": "SBK - General SkyBlock",
+            "command": "pets"
+        },
+        {
+            "name": "Wardrobe",
+            "category": "SBK - General SkyBlock",
+            "command": "wardrobe"
+        },
+        {
+            "name": "Sea Creature Guide",
+            "category": "SBK - General SkyBlock",
+            "command": ""
+        },
+        {
+            "name": "SkyBlock Settings",
+            "category": "SBK - General SkyBlock",
+            "command": "viewsettings"
+        },
+        {
+            "name": "SB Menu",
+            "category": "SBK - General SkyBlock",
+            "command": "sbmenu"
+        },
+        {
+            "name": "Skills Menu",
+            "category": "SBK - General SkyBlock",
+            "command": "skillmenu"
+        },
+        {
+            "name": "Collections Menu",
+            "category": "SBK - General SkyBlock",
+            "command": "collection"
+        },
+        {
+            "name": "Minions Menu",
+            "category": "SBK - General SkyBlock",
+            "command": "craftedgenerators"
+        },
+        {
+            "name": "Recepie Book",
+            "category": "SBK - General SkyBlock",
+            "command": "recipemenu"
+        },
+        {
+            "name": "Quest Log",
+            "category": "SBK - General SkyBlock",
+            "command": "questlog"
+        },
+        {
+            "name": "Calendar",
+            "category": "SBK - General SkyBlock",
+            "command": "calendar'"
+        },
+        {
+            "name": "Storage Menu",
+            "category": "SBK - General SkyBlock",
+            "command": "storage"
+        },
+        {
+            "name": "Bestiary",
+            "category": "SBK - General SkyBlock",
+            "command": "bestiary"
+        },
+        {
+            "name": "Play SkyBlock",
+            "category": "SBK - General SkyBlock",
+            "command": "play sb"
+        },
+        {
+            "name": "Profile Menu",
+            "category": "SBK - General SkyBlock",
+            "command": "profiles"
+        },
+        {
+            "name": "Events",
+            "category": "SBK - General SkyBlock",
+            "command": "events"
+        },
+        {
+            "name": "Bingo",
+            "category": "SBK - General SkyBlock",
+            "command": "bingo"
+        }
+]}
