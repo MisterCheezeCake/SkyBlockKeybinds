@@ -1,9 +1,9 @@
 {
     "entry": "index.js",
     "author": "MisterCheezeCake",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "name": "SkyBlockKeybinds",
     "description": "A simple, lightweight module that allows you to bind commands to various commands for Hypixel SkyBlock",
-    "requires": ["Vigilance", "ChangelogLib", "axios"],
+    "requires": ["Vigilance", "ChangelogLib", "axios", "requestv2"],
     "helpMessage": "&aWelcome to SkyBlockKeybinds. To configure keybinds, open the controls menu. To add custom keybinds, run &e/sbk custom"
 }
