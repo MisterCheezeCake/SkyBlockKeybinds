@@ -1,6 +1,6 @@
 {
-    "$schema": "./schema.json",
-    "version": 1,
+    "$schema": "https://raw.githubusercontent.com/MisterCheezeCake/RemoteData/main/SBK/schema.json",
+    "version": 6,
     "keybinds": [
         {
             "name": "Auction House",
@@ -34,74 +34,79 @@
             "clientside": true
         },
         {
+            "name": "Join Enterance",
+            "category": "SBK - Dungeons",
+            "command": "joindungeon CATACOMBS_ENTRANCE"
+        },
+        {
             "name": "Join Floor 1",
             "category": "SBK - Dungeons",
-            "command": "joindungeon catacombs 1"
+            "command": "joindungeon CATACOMBS_FLOOR_ONE"
         },
         {
             "name": "Join Floor 2",
             "category": "SBK - Dungeons",
-            "command": "joindungeon catacombs 2"
+            "command": "joindungeon CATACOMBS_FLOOR_TWO"
         },
         {
             "name": "Join Floor 3",
             "category": "SBK - Dungeons",
-            "command": "joindungeon catacombs 3"
+            "command": "joindungeon CATACOMBS_FLOOR_THREE"
         },
         {
             "name": "Join Floor 4",
             "category": "SBK - Dungeons",
-            "command": "joindungeon catacombs 4"
+            "command": "joindungeon CATACOMBS_FLOOR_FOUR"
         },
         {
             "name": "Join Floor 5",
             "category": "SBK - Dungeons",
-            "command": "joindungeon catacombs 5"
+            "command": "joindungeon CATACOMBS_FLOOR_FIVE"
         },
         {
             "name": "Join Floor 6",
             "category": "SBK - Dungeons",
-            "command": "joindungeon catacombs 6"
+            "command": "joindungeon CATACOMBS_FLOOR_SIX"
         },
         {
             "name": "Join Floor 7",
             "category": "SBK - Dungeons",
-            "command": "joindungeon catacombs 7"
+            "command": "joindungeon CATACOMBS_FLOOR_SEVEN"
         },
         {
             "name": "Join Master 1",
             "category": "SBK - Dungeons",
-            "command": "joindungeon master_catacombs 1"
+            "command": "joindungeon MASTER_CATACOMBS_FLOOR_ONE"
         },
         {
             "name": "Join Master 2",
             "category": "SBK - Dungeons",
-            "command": "joindungeon master_catacombs 2"
+            "command": "joindungeon MASTER_CATACOMBS_FLOOR_TWO"
         },
         {
             "name": "Join Master 3",
             "category": "SBK - Dungeons",
-            "command": "joindungeon master_catacombs 3"
+            "command": "joindungeon MASTER_CATACOMBS_FLOOR_THREE"
         },
         {
             "name": "Join Master 4",
             "category": "SBK - Dungeons",
-            "command": "joindungeon master_catacombs 4"
+            "command": "joindungeon MASTER_CATACOMBS_FLOOR_FOUR"
         },
         {
             "name": "Join Master 5",
             "category": "SBK - Dungeons",
-            "command": "joindungeon master_catacombs 5"
+            "command": "joindungeon MASTER_CATACOMBS_FLOOR_FIVE"
         },
         {
             "name": "Join Master 6",
             "category": "SBK - Dungeons",
-            "command": "joindungeon master_catacombs 6"
+            "command": "joindungeon MASTER_CATACOMBS_FLOOR_SIX"
         },
         {
             "name": "Join Master 7",
             "category": "SBK - Dungeons",
-            "command": "joindungeon master_catacombs 7"
+            "command": "joindungeon MASTER_CATACOMBS_FLOOR_SEVEN"
         },
         {
             "name": "Home",
@@ -119,7 +124,7 @@
             "command": "warp spider"
         },
         {
-            "name": "Blazing Fortress",
+            "name": "Crimson Isle",
             "category": "SBK - Warps",
             "command": "warp nether"
         },
@@ -189,9 +194,9 @@
             "command": "warp castle"
         },
         {
-            "name": "Magma Boss Arena",
+            "name": "Forgotten Skull",
             "category": "SBK - MVP+ Warps",
-            "command": "warp magma"
+            "command": "warp kuudra"
         },
         {
             "name": "Dark Auction",
@@ -326,7 +331,7 @@
         {
             "name": "Sea Creature Guide",
             "category": "SBK - General SkyBlock",
-            "command": ""
+            "command": "scg"
         },
         {
             "name": "SkyBlock Settings",
@@ -397,5 +402,160 @@
             "name": "Bingo",
             "category": "SBK - General SkyBlock",
             "command": "bingo"
+        },
+        {
+            "name": "Wiki in Hand",
+            "category": "SBK - General SkyBlock",
+            "command": "wikiinhand"
+        },
+        {
+            "name": "Potions Menu",
+            "category": "SBK - General SkyBlock",
+            "command": "potions"
+        },
+        {
+            "name": "Sack of Sacks",
+            "category": "SBK - General SkyBlock",
+            "command": "sacks"
+        },
+        {
+            "name": "View Commission Milestones",
+            "category": "SBK - Dwarven Mines",
+            "command": "viewcommissionmilestones"
+        },
+        {
+            "name": "Undo Last Zap",
+            "category": "SBK - Building",
+            "command": "undozap"
+        },
+        {
+            "name": "Undo Last Grand Architect",
+            "category": "SBK - Building",
+            "command": "undograndarchitect"
+        },
+        {
+            "name": "Accessory Bag",
+            "category": "SBK - Bags",
+            "command": "abag"
+        },
+        {
+            "name": "Fishing Bag",
+            "category": "SBK - Bags",
+            "command": "fbag"
+        },
+        {
+            "name": "Potion Bag",
+            "category": "SBK - Bags",
+            "command": "pbag"
+        },
+        {
+            "name": "Quiver",
+            "category": "SBK - Bags",
+            "command": "quiv"
+        },
+        {
+            "name": "Sack of Sacks",
+            "category": "SBK - Bags",
+            "command": "sacks"
+        },
+        {
+            "name": "Wasteland",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp wasteland"
+        },
+        {
+            "name": "Dragontail",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp dragontail"
+        },
+        {
+            "name": "Scarleton",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp scarleton"
+        },
+        {
+            "name": "Smoldering Tomb",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp smold"
+        },
+        {
+            "name": "Trapper's Den",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp trapper"
+        },
+        {
+            "name": "Crystal Nucleus",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp nucleus"
+        },
+        {
+            "name": "Trades Menu",
+            "category": "SBK - General SkyBlock",
+            "command": "trades"
+        },
+        {
+            "name": "Desk",
+            "category": "SBK - General SkyBlock",
+            "command": "desk"
+        },
+        {
+            "name": "Garden",
+            "category": "SBK - Warps",
+            "command": "warp garden"
+        },
+        {
+            "name": "Wizard Tower",
+            "category": "SBK - MVP+ Warps",
+            "command": "warp wizard"
+        },
+        {
+            "name": "Hex",
+            "category": "SBK - General SkyBlock",
+            "command": "hex"
+        },
+        {
+            "name": "Arachne",
+            "category": "SBK - MVP+ Warps",
+            "command": "arachne"
+        },
+        {
+            "name": "Equipment",
+            "category": "SBK - General SkyBlock",
+            "command": "eq"
+        },
+        {
+            "name": "Join Basic",
+            "category": "SBK - Kuudra",
+            "command": "joinkuudra KUUDRA_NORMAL"
+        },
+        {
+            "name": "Join Hot",
+            "category": "SBK - Kuudra",
+            "command": "joinkuudra KUUDRA_HOT"
+        },
+        {
+            "name": "Join Burning",
+            "category": "SBK - Kuudra",
+            "command": "joinkuudra KUUDRA_BURNING"
+        },
+        {
+            "name": "Join Fiery",
+            "category": "SBK - Kuudra",
+            "command": "joinkuudra KUUDRA_FIERY"
+        },
+        {
+            "name": "Join Infernal",
+            "category": "SBK - Kuudra",
+            "command": "joinkuudra KUUDRA_INFERNAL"
+        },
+        {
+            "name": "Elizabeth",
+            "category": "SBK - Warps",
+            "command": "warp elizabeth"
+        },
+        {
+            "name": "Dwarven Base Camp",
+            "category": "SBK - Warps",
+            "command": "warp camp"
         }
 ]}

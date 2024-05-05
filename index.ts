@@ -7,7 +7,7 @@ import { loadCustom } from "./src/custom/handler.js";
 import sbkCommand from "./src/command/sbk.js";
 import deleteCSM from "./src/migrate.js";
 import Changelog from "../ChangelogLib/index.js";
-const changelog = new Changelog("SkyBlockKeybinds", "2.0.2", "&aFixed a dependency issue")
+const changelog = new Changelog("SkyBlockKeybinds", "2.1.0", "&aUpdated fallback data and fixed some bugs")
 changelog.writeChangelog({changelog: "&b", name: "&e", version: "&e"})
 const path = `${Config.modulesFolder}/SkyBlockKeybinds`
 createConditionally(`${path}/data.json`, JSON.stringify({}))

@@ -35,15 +35,15 @@ class SBKeybind {
     kb: KeyBind
     constructor(name: string, category: string, command: string, cs?: boolean) {
         this.kb = new KeyBind(name, 0, category)
-        /*
+        
         this.kb.registerKeyPress(function () {
             ChatLib.command(command, !!cs)
             addChaHistory(command)
         })
-        */
-        register("tick", () => {
-            if (this.kb.isPressed()) ChatLib.command(command, !!cs)
-        })
+    
+        // register("tick", () => {
+        //     if (this.kb.isPressed()) ChatLib.command(command, !!cs)
+        // })
     }
 
 }

@@ -57,8 +57,8 @@ class Settings {
 
     constructor() {
         this.initialize(this);
-        this.setCategoryDescription("General", "SkyBlockKeybinds by MisterCheezeCake")
-        this.setCategoryDescription("Advanced", "SkyBlockKeybinds by MisterCheezeCake")
+        this.setCategoryDescription("General", "SkyBlockKeybinds by &6MisterCheezeCake")
+        this.setCategoryDescription("Advanced", "SkyBlockKeybinds by &6MisterCheezeCake")
         this.addDependency("Version URL", "Show advanced settings")
         this.addDependency("Remote Data URL", "Show advanced settings")
         this.addDependency("Reset Advanced Settings", "Show advanced settings")

@@ -1,0 +1,8 @@
+{
+    "purge": [
+        "config.toml",
+        "changelogs.json",
+        "data.json",
+        "keybinds/custom.json"
+    ]
+}
