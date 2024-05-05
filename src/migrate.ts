@@ -1,5 +1,5 @@
 /// <reference types = "../../CTAutocomplete" />
-/// <reference lib = "es2015" />
+/// <reference lib = "es2016" />
 const File = Java.type("java.io.File")
 const JSContext = Java.type("org.mozilla.javascript.Context")
 export default function deleteCSM() {

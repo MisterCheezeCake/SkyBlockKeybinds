@@ -1,7 +1,6 @@
 /// <reference types = "../../CTAutocomplete" />
-/// <reference lib = "es2015" />
+/// <reference lib = "es2016" />
 
-const File = Java.type("java.io.File")
 const createConditionally = (path, content) => {
     if (FileLib.exists(path)) return;
     FileLib.write(path, content)

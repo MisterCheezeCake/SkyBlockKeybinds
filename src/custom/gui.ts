@@ -1,312 +1,263 @@
 /// <reference types = "../../../CTAutocomplete" />
-/// <reference lib = "es2015" />
-import { drawBorderedRect, between, drawBackground, allowedChars } from "./render"
+/// <reference lib = "es2016" />
+
 import { saveCustomKeybind, fetchCurrent, Custom, saveEditedVersion, deleteCustom } from "./handler"
 import settings from "../settings.js"
-let current: Custom
+import { CheezeGUI, CheezeText } from "./lib"
+
 const Essential = Java.type("gg.essential.api.EssentialAPI")
-const box = new Image("box1", "https://raw.githubusercontent.com/MisterCheezeCake/RemoteData/main/SBK/box.png")
-const check = new Image("check", "https://raw.githubusercontent.com/MisterCheezeCake/RemoteData/main/SBK/check.png")
-const buttons = {
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-    5: false,
-    6: false,
-    7: false
-}
+const box = Image.fromFile(`${Config.modulesFolder}/SkyBlockKeybinds/assets/box.png`)
+const check = Image.fromFile(`${Config.modulesFolder}/SkyBlockKeybinds/assets/check.png`)
+
 let delid = -1
-function dontSpam(buttonAction: Function, id: number) {
-    buttons[id] = true
-    buttonAction()
-    setTimeout(() => buttons[id] = false, 200)
-}
-function dontSpamDlg(buttonAction: Function, id: any) {
-    dlgButtons[id] = true
-    buttonAction()
-    setTimeout(() => dlgButtons[id] = false, 200)
-}
 
+let name = new CheezeText()
+let command = new CheezeText()
+
+let selected =  null
+let checked = false
+let editMode = false
+let slashWarn = false
+let editId: number
+
+function resetNewBind() {
+    name = new CheezeText()
+    command = new CheezeText()
+    selected = null
+    checked = false
+    editMode = false
+    slashWarn = false
+}
+function setUpEditMode(nme: string, cmd: string, chk: boolean, id: number) {
+    resetNewBind()
+    editMode = true
+    name = new CheezeText(nme)
+    command = new CheezeText(cmd)
+    checked = chk
+    editId = id
+}
 const customBind = new Gui()
-customBind.registerDraw(draw)
-function draw() {
-    customBind.addButton(1, 90, 10, 300, 20, "Create new Custom Keybind");
-    customBind.addButton(2, 90, 50, 300, 20, "Manage Existing Custom Keybinds");
-    customBind.addButton(6, 90, 90, 300, 20, "Back to Main Settings Menu")
-    drawBackground()
-    
 
- 
-     
+customBind.registerDraw(draw)
+
+
+customBind.addButton(1, CheezeGUI.center(270), 20, 270, 20, "Create new Custom Keybind");
+customBind.addButton(2, CheezeGUI.center(270), 60, 270, 20, "Manage Existing Custom Keybinds");
+customBind.addButton(6, CheezeGUI.center(270), 100, 270, 20, "Back to Main Settings Menu")
+
+function draw() {
+    CheezeGUI.drawBackground()
+    CheezeGUI.drawCenteredString("&a&lSkyBlockKeybinds Custom Keybinds by &6&lMisterCheezeCake", 5)
 } 
 
 customBind.registerActionPerformed(button => {
     //@ts-ignore
-    if (button === 1 && buttons[1] === false) dontSpam(() => {
+    if (button === 1) {
         newBind.open()
-        if (txts.edit === true) {
-            txts.edit = false
-            txts[1] = ""
-            txts[2] = ""
-            txts.selected = 0
-            txts.b1 = false
-            txts.b2 = false
-            txts.checked = false
-
-        }
-    },1)
+        resetNewBind()
+    }
+       
     //@ts-ignore
-    if (button === 2 && buttons[2] === false) dontSpam(() => {
-        current = fetchCurrent()
-        listGUi.open()
-    },2)
-    if (button === 6 && buttons[6] === false) dontSpam(() => {
-        settings.openGUI()
-    }, 6)
+    if (button === 2)  {
+        createListGui().open()
+    }
+    //@ts-ignore
+    if (button === 6) settings.openGUI()
 })
 
-let txts = {
-    1: "",
-    2: "",
-    b1: false,
-    b2: false,
-    selected: 0,
-    checked: false,
-    edit: false,
-    editID: -1
-}
-let outLineColor = Renderer.color(0, 255, 0)
-let outLineColor2 = Renderer.color(0, 255, 0)
-register("step", () => {
-    if (txts.b1 === true) {
-        
-        if (txts.selected !== 1) {
-            txts[1] = ""
-            txts.b1 = false
-            return;
-        }
-        if (txts[1] === "") txts[1] = "|"
-        else if (txts[1] === "|") txts[1] = ""  
-    }
 
-    if (txts.b2 === true) {
-        if (txts.selected !== 2) {
-            txts[2] = ""
-            txts.b2 = false
-            return;
-        }
-        if (txts[2] === "") txts[2] = "|"
-        else if (txts[2] === "|") txts[2] = ""
-    }
 
-    if (txts.b2 === false && txts.b1 === false) {
-        if (txts[1] === "|") txts[1] = ""
-        if (txts[2] === "|") txts[2] = ""
 
-    }
-
-}).setFps(2)
-
-register("renderOverlay", () => {
-    if (!newBind.isOpen()) return;
-    if (txts.selected === 1) {
-        outLineColor = Renderer.color(232, 232, 21)
-        outLineColor2 =  Renderer.color(0,255,0)
-    } else if (txts.selected === 2) {
-        outLineColor2 = Renderer.color(232, 232, 21)
-        outLineColor =  Renderer.color(0,255,0)
-    } else if (txts.selected === 0) {
-        outLineColor2 = Renderer.color(0,255,0)
-        outLineColor =  Renderer.color(0,255,0)
-    }
-})
 const newBind = new Gui() 
- 
+
+newBind.addButton(3, CheezeGUI.center(270), 180, 270, 20, "Save custom Keybind");
+newBind.addButton(4, CheezeGUI.center(270), 210, 270, 20, "Cancel")
 newBind.registerDraw(newBindDraw)
+
 function newBindDraw() {
-    drawBackground()
-    drawBorderedRect(
-        Renderer.color(0,0,0),
-         outLineColor,
-            90,
-            13,
-            300,
-            15
-    )
-    Renderer.drawStringWithShadow("&lEnter Unique Name", 175, 2)
+    CheezeGUI.drawBackground()
+    const leftEdge = CheezeGUI.center(270)
+    CheezeGUI.drawCenteredString(`&6&l${editMode ? "Edit": "Create"} Custom Keybinds`, 5)
+    CheezeGUI.drawCenteredString("Enter Unique Name", 20)
+    CheezeGUI.drawBorderedRect(leftEdge, 32, 270, 15, Renderer.BLACK, selected == "name" ? Renderer.YELLOW : Renderer.GRAY)
+    CheezeGUI.drawCenteredString("Enter Command Without /", 60)
+    CheezeGUI.drawBorderedRect(leftEdge, 72, 270, 15, Renderer.BLACK, selected == "command" ? Renderer.YELLOW : Renderer.GRAY)
+    Renderer.drawStringWithShadow(name.getText(selected == "name"), leftEdge + 2, 35)
+    Renderer.drawStringWithShadow(command.getText(selected == "command"), leftEdge +2, 75)
+    CheezeGUI.drawCenteredString("Clientside (Click to Change)", 103)
+    Renderer.drawImage(box, CheezeGUI.center(50), 115, 50, 50)  
+    if (checked) Renderer.drawImage(check, CheezeGUI.center(32), 123, 32, 32)
+    if (name.text.length > 0 && command.text.length > 0) newBind.setButtonEnabled(3, true)
+    else newBind.setButtonEnabled(3, false)
 
-    drawBorderedRect(
-        Renderer.color(0,0,0),
-         outLineColor2,
-            90,
-            63,
-            300,
-            15
-    )
-    Renderer.drawStringWithShadow("&lEnter Command Without /", 175, 52)
 
-    Renderer.drawStringWithShadow(txts[1], 92, 17)
-    Renderer.drawStringWithShadow(txts[2], 92, 67)
-    Renderer.drawImage(box, 205, 120, 50, 50)
-    if (txts.checked) Renderer.drawImage(check, 213, 128, 32, 32)
-    Renderer.drawStringWithShadow("&lClientside (click to change)", 150, 110);
-    newBind.addButton(3, 90, 180, 300, 20, "Save custom Keybind");
-    newBind.addButton(4, 90, 210, 300, 20, "Cancel");
-
-   
+    
+}
+function handleTextInput (text: CheezeText, char: string, keycode: number) {
+    if (keycode === 14) {
+        if (Client.isControlDown()) {
+            text.setText("")
+            text.setCursorPos(0)
+            return;
+        }
+        return text.backspace()
+    }
+    if (keycode === 203) return text.moveCursor(-1)
+    if (keycode === 205) return text.moveCursor(1)
+    let c = "" + char
+    if (Client.isControlDown()) {
+        if (keycode == 47) {
+            let clipboard = CheezeText.getClipboard()
+            for (let i = 0; i < clipboard.length; i++) {
+                handleTextInput(text, clipboard[i], 0)
+            }
+            return;
+        }
+        if (keycode === 46) {
+            CheezeText.setClipboard(text.text)
+            return;
+        }
+        if (keycode === 45) {
+            CheezeText.setClipboard(text.text)
+            text.setText("")
+            text.setCursorPos(0)
+            return;
+        }
+    }
+    if (!CheezeText.allowedChars.includes(c)) return;
+    text.type(c)
 }
 newBind.registerKeyTyped((typed, key) => {
-    if (txts.selected === 0) return;
-    if (key === 14) {
-        txts[txts.selected] = txts[txts.selected].substring(0, txts[txts.selected].length -1)
-        if (txts[txts.selected].length === 0) txts["b" + txts.selected] = true
-        return;
-    }
-    //@ts-ignore
-    if (!allowedChars.includes("" + typed)) return;
-    if (txts[txts.selected].length === 0 || txts[txts.selected] === "|") {
-        txts["b" + txts.selected] = false
-        txts[txts.selected] = ""
-    }
-    txts[txts.selected] = txts[txts.selected] + "" + typed
-
+   if (selected === "name") handleTextInput(name, typed, key)
+    else if (selected === "command") handleTextInput(command, typed, key)
 })
+// New Code
 newBind.registerClicked((x,y) => {
-    if (between(89, 391,x) && between(12,29,y)) {
-        txts.selected = 1
-        if (txts[1].length === 0) txts.b1 = true
-    } else if (between(89, 391,x) && between(62, 79, y)) {
-        txts.selected = 2
-        if (txts[2].length === 0) txts.b2 = true
-    } else {
-        txts.selected = 0
-        txts.b1 = false
-        txts.b2 = false
-    }
+    const rectEdges = CheezeGUI.getHorizontalEdges(270)
 
-    if (between(205, 255, x) && between(120, 170, y)) {
-        txts.checked = !txts.checked
+    if (CheezeGUI.between(x, ...rectEdges) && CheezeGUI.between(y, 32, 47)) {
+        selected = "name"
+    } else if (CheezeGUI.between(x, ...rectEdges) && CheezeGUI.between(y, 72, 87)) {
+        selected = "command"
+    } else if (CheezeGUI.between(x, CheezeGUI.center(50), CheezeGUI.center(50) + 50) && CheezeGUI.between(y, 115, 165)){
+        checked = !checked
+        selected = null
+    } else {
+        selected = null
     }
 })
 
 newBind.registerActionPerformed((button) => {
     if (!button) return;
     //@ts-ignore
-    if (button === 3 && buttons[3] === false) dontSpam(() => {
-        if (txts[2].startsWith("/")) {
-            Essential.getNotifications().push("&6SkyBlockKeybinds", `&cYou don't need to put a slash in front of the Command`, 5)
+    if (button === 3) {
+        if (command.text.startsWith("/") && !slashWarn) {
+            Essential.getNotifications().push("&6SkyBlockKeybinds", `&cYou don't need to put a slash in front of the Command. Press this again if you want to add the command: &e/${command.text}`, 7.5)
+            slashWarn = true
             return;
         }
-        if (txts[1] && txts[2])  {
-            if (txts.edit === false) {
-                saveCustomKeybind(txts[1], txts[2], txts.checked)
-                Essential.getNotifications().push("&6SkyBlockKeybinds", `&aSaved your custom KeyBind &e${txts[1]}\n&aYou can find it in your controls`, 10)
+        
+            if (editMode === false) {
+                saveCustomKeybind(name.text, command.text, checked)
+                Essential.getNotifications().push("&6SkyBlockKeybinds", `&aSaved your custom KeyBind &e${name.text}\n&aYou can find it in your controls`, 10)
                 newBind.close()
-                txts[1] = ""
-                txts[2] = ""
-                txts.selected = 0
-                txts.b1 = false
-                txts.b2 = false
-                txts.checked = false
-            } else {
-                saveEditedVersion(txts[1], txts[2], txts.checked, txts.editID)
+                resetNewBind()
+            } else if (editMode === true) {
+                saveEditedVersion(name.text, command.text, checked, editId)
                 Essential.getNotifications().push("&6SkyBlockKeybinds", `&aSaved your changes`, 10)
                 newBind.close()
-                txts.edit = false
-                txts[1] = ""
-                txts[2] = ""
-                txts.selected = 0
-                txts.b1 = false
-                txts.b2 = false
-                txts.checked = false
-                txts.editID = -1
+                resetNewBind()
+                // Remove this once loader changes are done
                 ChatTriggers.loadCT()
-
             }
-        } else {
-            Essential.getNotifications().push("&6SkyBlockKeybinds", `&cYou need to fill out all fields`, 5)
+
+            
+     
         }
-    }, 3) 
-
-        //@ts-ignore
-if (button === 4 && buttons[4] === false) dontSpam(() => {
-    newBind.close()
-    txts[1] = ""
-    txts[2] = ""
-    txts.selected = 0
-    txts.b1 = false
-    txts.b2 = false
-    txts.checked = false
-    txts.edit = false
-    txts.editID = -1
-}, 4)
+            //@ts-ignore
+    if (button === 4) {
+        customBind.open()
+        resetNewBind()
+    }
 })
-const dlgButtons = {
 
-}
-function drawListGui() {
-    drawBackground()
-    for (let i = 0; i < Renderer.screen.getHeight() / 20; i++) {
-        Renderer.drawLine(Renderer.BLACK, 0, (20 * i) + 20, Renderer.screen.getWidth(),(20 * i) + 20, 1 )
-    }
+
+function createListGui() {
+    const listGui = new Gui()
     const w = Renderer.screen.getWidth() / 4
-    for (let i = 1; i < 4; i++) {
-        Renderer.drawLine(Renderer.BLACK, w * i, 0, w * i, Renderer.screen.getHeight(), 1)
-    }
-    
-    current.keybinds.forEach((kb, index) => {
-        Renderer.drawStringWithShadow(kb.name, 1, 20 * index + 1)
-        Renderer.drawStringWithShadow("/" + kb.command, w + 1, 20 * index + 1)
-        listGUi.addButton(parseInt(1 + "" + index, 10), (w * 2 )+ 2, 20 * index, w - 3, 20, "Edit")
-        listGUi.addButton(parseInt(2 + "" + index, 10), (w * 3 )+ 2, 20 * index, w - 3, 20, "Delete")
+    const drawFuncs: Function[] = []
+    listGui.registerDraw(() => {
+        CheezeGUI.drawBackground()
+        for (let i = 0; i < Renderer.screen.getHeight() / 20; i++) {
+            Renderer.drawLine(Renderer.BLACK, 0, (20 * i) + 20, Renderer.screen.getWidth(),(20 * i) + 20, 1 )
+        }
+        for (let i = 1; i < 4; i++) {
+            Renderer.drawLine(Renderer.BLACK, w * i, 0, w * i, Renderer.screen.getHeight(), 1)
+        }
+        drawFuncs.forEach(func => func())
     })
-}
-
-const listGUi = new Gui()
-listGUi.registerDraw(drawListGui)
-
-listGUi.registerActionPerformed(button => {
-    if (dlgButtons[button]) return;
-    dontSpamDlg(() => {
+    const customKeybinds: Custom = fetchCurrent()
+    customKeybinds.keybinds.forEach((kb, index) => {
+        drawFuncs.push(() => {
+            Renderer.drawStringWithShadow(kb.name, 1, 20 * index + 1)
+            Renderer.drawStringWithShadow("/" + kb.command, w + 1, 20 * index + 1)
+        })
+        listGui.addButton(parseInt(1 + "" + index, 10), (w * 2 )+ 2, 20 * index, w - 3, 20, "Edit")
+        listGui.addButton(parseInt(2 + "" + index, 10), (w * 3 )+ 2, 20 * index, w - 3, 20, "Delete")
+    })
+    listGui.registerActionPerformed(button => {
         let str = button.toString()
         if (str.startsWith("1")) {
             let id = parseInt(str.substring(1, str.length))
-            let cr = current.keybinds[id]
-            txts.checked = cr.clientSide
-            txts[1] = cr.name
-            txts[2] = cr.command
-            txts.edit = true
-            txts.editID = id
+            let cr = customKeybinds.keybinds[id]
+            setUpEditMode(cr.name, cr.command, cr.clientSide, id)
             newBind.open()
         } else if (str.startsWith("2")) {
             let id = parseInt(str.substring(1, str.length))
             delid = id
             delGui.open()
         }
-    }, button)
-})
+    })
+    return listGui
+}
+
 
 const delGui = new Gui()
 delGui.registerDraw(delGUiDraw)
+delGui.addButton(5, CheezeGUI.center(300), 40, 300, 20, "Yes, I am sure")
+delGui.addButton(7, CheezeGUI.center(300), 80 , 300, 20, "No, take me back")
 function delGUiDraw() {
-    drawBackground()
+    CheezeGUI.drawBackground()
     Renderer.drawStringWithShadow("&4&lAre you sure?", 200, 10)
-    delGui.addButton(5, 90, 40, 300, 20, "Yes, I am sure")
-    delGui.addButton(7, 90, 80 , 300, 20, "No, take me back")
 }
 
-delGui.registerActionPerformed(button => {
-    if (button === 5 && buttons[5] === false) dontSpam(() => {
+delGui.registerActionPerformed((button: any)=> {
+    if (button === 5 ) {
         deleteCustom(delid)
         delGui.close()
         Essential.getNotifications().push("&6SkyBlockKeybinds", `&cDeleted Keybind`, 10)
         ChatTriggers.loadCT()
-    }, 5)
-    if (button === 7 && buttons[7] === false) dontSpam(() => {
-        listGUi.open()
-    }, 7)
+    }
+    if (button === 7) {
+        createListGui().open()
+    }
 })
+
 export default customBind
 
-//export { renderTrigger}
+// const testGUI = new Gui()
+// let testText = new CheezeText()
+
+// testGUI.registerDraw(() => {
+//     CheezeGUI.drawCenteredString(testText.text, 5)
+//     CheezeGUI.drawCenteredString("Control: "+Client.isControlDown(), 20)
+//     CheezeGUI.drawCenteredString("Shift: "+Client.isShiftDown(), 35)
+//     CheezeGUI.drawCenteredString("Alt: "+Client.isAltDown(), 50)
+// })
+// testGUI.registerKeyTyped((char, keycode) => {
+//     testText.setText(`Char: ${char} Keycode: ${keycode}`)
+// })
+
+// register("command", () => {
+//     testGUI.open()
+// }).setName("testgui")

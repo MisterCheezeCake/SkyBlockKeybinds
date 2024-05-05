@@ -1,5 +1,5 @@
 /// <reference types = "../../CTAutocomplete" />
-/// <reference lib = "es2015" />
+/// <reference lib = "es2016" />
 import addChaHistory from "./chathistory.js"
 import axios from "../../axios/index.js"
 import settings from "./settings.js"
@@ -31,11 +31,11 @@ function loadFallBack() {
 
 
 class SBKeybind {
-
+    command: string
     kb: KeyBind
     constructor(name: string, category: string, command: string, cs?: boolean) {
         this.kb = new KeyBind(name, 0, category)
-        
+        this.command = command
         this.kb.registerKeyPress(function () {
             ChatLib.command(command, !!cs)
             addChaHistory(command)

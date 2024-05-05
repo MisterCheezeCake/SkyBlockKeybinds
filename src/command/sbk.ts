@@ -1,5 +1,5 @@
 /// <reference types = "../../../CTAutocomplete" />
-/// <reference lib = "es2015" />
+/// <reference lib = "es2016" />
 import customBind from "../custom/gui";
 import settings from "../settings.js"
 const Desktop = Java.type("java.awt.Desktop")
@@ -14,11 +14,20 @@ function sbkCommand (...args) {
         ChatLib.chat(helpTC("/sbk request", "Open the form to submit requests"))
         ChatLib.chat(new TextComponent("&aIf you need more help, click here to join the &3Discord").setClick("open_url", "https://discord.gg/9RJKbCtEUz").setHoverValue("&3Join the Discord"))
     }
-    else if (args[0] === "custom") customBind.open()
+    else if (args[0] === "custom") {
+        customBind.open()
+    }
     else if (args[0] === "settings" || args[0] === "config") settings.openGUI()
     else if (args[0] === "installcs" || args[0] ===  "sayno" || args[0] === "refreshremote" || args[0] === "devmode" || args[0] === "eval" ) ChatLib.chat("&f[&6SkyBlockKeybinds&f] &cThat command has been removed")
     else if (args[0] === "request") Desktop.getDesktop().browse(new URI(`https://mistercheezecake.github.io/sbkform.html?u=${Player.getUUID()}`))
-    else if (args[0] === "cl") ChatLib.chat(new TextComponent("&3Click here to view the full Changelog").setClick("open_url", "https://gist.github.com/MisterCheezeCake/9147dec2e7f642872f734a5409185c68").setHoverValue("&3Click Me"))
+    else if (args[0] === "cl") {
+        ChatLib.chat("&8&f[&6SkyBlockKeybinds&f] &e2.2.0 Changelog&7:")
+        ChatLib.chat("&b- &aOverhauled the Custom Keybinds GUI")
+        ChatLib.chat("&b- &aIt now supports copy pasting, and the text inputs have been significantly improved")
+        ChatLib.chat("&b - &aThe cancel button now returns to the main menu instead of closing the GUI")
+        
+    }
+    else if (args[0] === "discord")  ChatLib.chat(new TextComponent("&f[&6SkyBlockKeybinds&f] &3Click here to join the Discord").setClick("open_url", "https://discord.gg/9RJKbCtEUz").setHoverValue("&3Join the Discord"))
     else ChatLib.chat(new TextComponent("&f[&6SkyBlockKeybinds&f] &cThat command does not exist. Run &e/sbk help &cfor a list of commands").setClick("run_command", "/sbk help").setHoverValue("&3Click to run &e/sbk help"))
 
 }

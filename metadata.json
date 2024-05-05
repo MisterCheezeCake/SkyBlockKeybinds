@@ -1,7 +1,7 @@
 {
     "entry": "index.js",
     "author": "MisterCheezeCake",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "name": "SkyBlockKeybinds",
     "description": "A simple, lightweight module that allows you to bind commands to various commands for Hypixel SkyBlock",
     "requires": ["Vigilance", "ChangelogLib", "axios", "requestv2"],

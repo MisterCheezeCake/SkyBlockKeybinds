@@ -30,7 +30,7 @@ export const saveEditedVersion = (name, command, cs, id) => {
 
 const tempRegister = (keybind: CustomKeybind) => {
     const kb = new SBKeybind(keybind.name, "SBK - Custom Keybinds", keybind.command, keybind.clientSide)
-    return kb
+    return kb;
     // This func serves to temperarily register the keybind until it is loaded again by the mod on reload
 }
 export const loadCustom = () => {
